@@ -25,6 +25,9 @@ spec:
         - name: http
           containerPort: {{ .Values.service.targetPort }}
           protocol: TCP
+        envFrom:
+        - secretRef:
+            name: todo-api-db-credentials
         env:
         {{- range .Values.env }}
         - name: {{ .name }}
