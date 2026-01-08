@@ -7,7 +7,7 @@ Thank you for your interest in contributing! This is a portfolio/learning projec
 1. **Fork the repository**
 2. **Clone your fork**
    ```bash
-   git clone https://github.com/YOUR-USERNAME/eks-todo-gitops.git
+   git clone https://github.com/treehousepnw/eks-todo-gitops.git
    cd eks-todo-gitops
    ```
 3. **Create a branch**

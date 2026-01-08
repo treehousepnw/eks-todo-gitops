@@ -87,7 +87,7 @@ chmod +x scripts/setup-tools.sh
 ### 1. Clone and Setup
 
 ```bash
-git clone https://github.com/your-username/eks-todo-gitops.git
+git clone https://github.com/treehousepnw/eks-todo-gitops.git
 cd eks-todo-gitops
 ```
 
