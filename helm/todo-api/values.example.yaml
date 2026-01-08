@@ -1,0 +1,92 @@
+# Example values for todo-api Helm chart
+# Copy this file to values.yaml and fill in your values
+#
+# For production deployments, use External Secrets Operator or
+# Kubernetes Secrets to inject sensitive values instead of hardcoding them.
+
+replicaCount: 2
+
+image:
+  # Replace with your ECR repository URL
+  # Format: <account-id>.dkr.ecr.<region>.amazonaws.com/<repo-name>
+  repository: "<AWS_ACCOUNT_ID>.dkr.ecr.<AWS_REGION>.amazonaws.com/<ECR_REPO_NAME>"
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: LoadBalancer
+  port: 80
+  targetPort: 8080
+  annotations: {}
+    # For AWS NLB, uncomment:
+    # service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 250m
+    memory: 256Mi
+
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 70
+  targetMemoryUtilizationPercentage: 80
+
+livenessProbe:
+  httpGet:
+    path: /health
+    port: 8080
+  initialDelaySeconds: 30
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 3
+
+readinessProbe:
+  httpGet:
+    path: /health
+    port: 8080
+  initialDelaySeconds: 10
+  periodSeconds: 5
+  timeoutSeconds: 3
+  failureThreshold: 3
+
+env:
+  - name: ENVIRONMENT
+    value: "dev"  # Change to: staging, prod
+  - name: PORT
+    value: "8080"
+  - name: DB_HOST
+    value: "<RDS_ENDPOINT>"  # e.g., mydb.xxxxx.us-west-2.rds.amazonaws.com
+  - name: DB_PORT
+    value: "5432"
+  - name: DB_NAME
+    value: "tododb"
+  - name: DB_USER
+    value: "<DB_USERNAME>"
+  - name: DB_PASSWORD
+    value: "<DB_PASSWORD>"  # SECURITY: Use External Secrets in production!
+
+# For production, consider using External Secrets Operator:
+# externalSecrets:
+#   enabled: true
+#   secretStoreRef:
+#     name: aws-secrets-manager
+#     kind: ClusterSecretStore
+#   data:
+#     - secretKey: DB_PASSWORD
+#       remoteRef:
+#         key: /eks-todo-gitops/prod/rds
+#         property: password
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

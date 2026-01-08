@@ -1,0 +1,14 @@
+apiVersion: v2
+name: todo-api
+description: A simple TODO REST API for EKS GitOps demo
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
+keywords:
+  - todo
+  - api
+  - flask
+  - demo
+maintainers:
+  - name: Tree
+    email: derek.ogletree@gmail.com

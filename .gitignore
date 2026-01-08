@@ -1,0 +1,72 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+*.tfvars.backup
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Terraform variable files (may contain secrets)
+# Keep *.tfvars.example files, ignore actual tfvars
+terraform/*.tfvars
+!terraform/environments/*.tfvars.example
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets and credentials
+*.pem
+*.key
+*.crt
+secrets/
+.env
+.env.*
+!.env.example
+
+# Kubernetes
+kubeconfig
+*.kubeconfig
+kubeconfig-*
+
+# Helm
+helm/*/values.yaml
+!helm/*/values.example.yaml
+helm/**/charts/
+helm/**/*.tgz
+
+# Working notes (may contain sensitive info)
+scratchpad.md
+notes.md
+TODO.md
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+*.egg-info/
+.eggs/
+dist/
+build/
+venv/
+.venv/
+
+# Logs
+*.log
+logs/
+
+# AWS
+.aws/
+aws-credentials
