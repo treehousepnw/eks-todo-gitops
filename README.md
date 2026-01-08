@@ -7,8 +7,6 @@
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
 ![Helm](https://img.shields.io/badge/Helm-0F1689?style=for-the-badge&logo=helm&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Production_Ready-brightgreen?style=for-the-badge)
-![GitHub last commit](https://img.shields.io/github/last-commit/treehousepnw/eks-todo-gitops?style=for-the-badge)
-![GitHub repo size](https://img.shields.io/github/repo-size/treehousepnw/eks-todo-gitops?style=for-the-badge)
 
 Production-grade Kubernetes deployment on Amazon EKS with GitOps using ArgoCD, demonstrating modern cloud-native practices and DevOps methodologies.
 
