@@ -8,12 +8,12 @@
 ![Helm](https://img.shields.io/badge/Helm-0F1689?style=for-the-badge&logo=helm&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Production_Ready-brightgreen?style=for-the-badge)
 
-Production-grade Kubernetes deployment on Amazon EKS with GitOps using ArgoCD, demonstrating modern cloud-native practices and DevOps methodologies.
+Production-grade Kubernetes deployment on Amazon EKS using Helm charts, demonstrating modern cloud-native practices and DevOps methodologies.
 
 ## Project Overview
 
 This project deploys a TODO REST API on Amazon EKS with:
-- **GitOps** deployment model using ArgoCD
+- **Helm-based** deployment model
 - **Infrastructure as Code** with Terraform
 - **Observability** stack with Prometheus and Grafana
 - **Auto-scaling** with Horizontal Pod Autoscaler and Cluster Autoscaler
@@ -42,7 +42,6 @@ This project deploys a TODO REST API on Amazon EKS with:
 │  Worker Nodes (EC2 in Private Subnets)         │
 │  ┌────────────────────────────────┐            │
 │  │ Platform Services:              │            │
-│  │ • ArgoCD (GitOps)              │            │
 │  │ • AWS Load Balancer Controller │            │
 │  │ • External Secrets Operator    │            │
 │  │ • Metrics Server               │            │
@@ -73,7 +72,6 @@ This project deploys a TODO REST API on Amazon EKS with:
 - Terraform >= 1.5.0
 - kubectl >= 1.28
 - Helm >= 3.12
-- ArgoCD CLI (optional but recommended)
 
 ### Quick Setup
 ```bash
@@ -121,6 +119,19 @@ kubectl get nodes
 kubectl get namespaces
 ```
 
+### 4. Deploy the Application
+
+```bash
+# Deploy TODO API with Helm
+helm upgrade --install todo-api ./helm/todo-api \
+  -n apps --create-namespace \
+  -f helm/todo-api/values.yaml
+
+# Verify deployment
+kubectl get pods -n apps
+kubectl get svc -n apps
+```
+
 ## Project Structure
 
 ```
@@ -166,17 +177,27 @@ eks-todo-gitops/
 - [ ] ConfigMaps and Secrets
 - [ ] Ingress configuration
 
-### Week 4: GitOps with ArgoCD
-- [ ] ArgoCD installation
-- [ ] Application repository structure
-- [ ] Automated deployments
-- [ ] Multi-environment setup
+### Week 4: Production Hardening
+- [ ] Network policies
+- [ ] Pod security standards
+- [ ] Resource quotas and limits
+- [ ] Multi-environment setup (staging/prod)
 
 ### Week 5: Observability
 - [ ] Prometheus Operator
 - [ ] Grafana dashboards
 - [ ] Application metrics
 - [ ] Alerting rules
+
+## What's Next
+
+Future enhancements planned for this project:
+
+- **GitOps with ArgoCD** - Implement declarative, Git-driven deployments with automatic sync
+- **CI/CD Pipeline** - GitHub Actions workflow for automated testing and image builds
+- **Service Mesh** - Istio or Linkerd for advanced traffic management
+- **Secrets Management** - External Secrets Operator with AWS Secrets Manager
+- **Backup & Disaster Recovery** - Velero for cluster backup and restore
 
 ## Cost Breakdown
 
